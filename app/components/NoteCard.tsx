@@ -1,56 +1,39 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { Card, Paragraph, Title } from 'react-native-paper';
 import { Note } from '../contexts/NoteContext';
 
 interface NoteCardProps {
   note: Note;
+  onPress: () => void;
 }
 
-const NoteCard: React.FC<NoteCardProps> = ({ note }) => {
+const NoteCard: React.FC<NoteCardProps> = ({ note, onPress }) => {
   return (
-    <View style={styles.card}>
-      <Text style={styles.title} numberOfLines={1}>
-        {note.title}
-      </Text>
-      <Text style={styles.content} numberOfLines={2}>
-        {note.content}
-      </Text>
-      <Text style={styles.date}>
-        {new Date(note.updatedAt).toLocaleDateString()}
-      </Text>
-    </View>
+    <Card style={styles.card} onPress={onPress} mode='outlined'>
+      <Card.Content>
+        <Title numberOfLines={1}>{note.title}</Title>
+        <Paragraph numberOfLines={2}>{note.content}</Paragraph>
+        <Paragraph style={styles.date}>
+          {new Date(note.updatedAt).toLocaleDateString()}
+        </Paragraph>
+      </Card.Content>
+    </Card>
   );
 };
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: '#fff',
-    borderRadius: 8,
-    padding: 16,
     marginBottom: 16,
-    elevation: 2,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.2,
-    shadowRadius: 2,
-  },
-  title: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 8,
-    color: '#333',
-  },
-  content: {
-    fontSize: 14,
-    color: '#666',
-    marginBottom: 8,
+    backgroundColor: 'white',
+    borderColor: '#eee'
   },
   date: {
     fontSize: 12,
     color: '#999',
-    textAlign: 'right',
+    alignSelf: 'flex-end',
+    marginTop: 8,
   },
 });
 
 export default NoteCard;
-
