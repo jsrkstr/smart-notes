@@ -37,7 +37,7 @@ export default function RootLayout() {
             presentation: 'modal',
             animationDuration: 3000,
           }}>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="app" options={{ headerShown: false }} />
           <Stack.Screen name="+not-found" />
         </Stack>
         <StatusBar style="auto" hidden={false} />

@@ -2,17 +2,13 @@ import React, { useState } from 'react';
 import { View, FlatList, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../App';
 import { useNotes, Note } from '../contexts/NoteContext';
 import NoteCard from '../components/NoteCard';
 import { Searchbar, FAB, Appbar } from 'react-native-paper';
 import { router } from 'expo-router';
 
-type HomeScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Home'>;
-
-const HomeScreenn: React.FC = () => {
+const HomeScreen: React.FC = () => {
   const { notes } = useNotes();
-  const navigation = useNavigation<HomeScreenNavigationProp>();
   const [searchQuery, setSearchQuery] = useState('');
 
   const renderNoteCard = ({ item }: { item: Note }) => {
@@ -24,7 +20,7 @@ const HomeScreenn: React.FC = () => {
       return null;
     }
     return (
-      <NoteCard note={item} onPress={() => router.push({ pathname: '/(tabs)/explore', params: { noteId: item.id } })} />
+      <NoteCard note={item} onPress={() => router.push({ pathname: '/screens/NoteEditorScreen', params: { noteId: item.id } })} />
     );
   };
 
@@ -48,7 +44,7 @@ const HomeScreenn: React.FC = () => {
       <FAB
         style={styles.fab}
         icon="plus"
-        onPress={() => router.push({ pathname: '/(tabs)/explore' })}
+        onPress={() => router.push({ pathname: '/screens/NoteEditorScreen' })}
       />
     </View>
   );
@@ -77,5 +73,5 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreenn;
+export default HomeScreen;
 
