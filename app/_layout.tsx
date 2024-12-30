@@ -34,10 +34,10 @@ export default function RootLayout() {
         <Stack
           screenOptions={{
             animation: 'fade',
-            presentation: 'modal',
             animationDuration: 3000,
+            headerShown: false,
           }}>
-          <Stack.Screen name="app"/>
+          <Stack.Screen name="index"/>
           <Stack.Screen name="+not-found" />
         </Stack>
         <StatusBar style="auto" hidden={false} />
