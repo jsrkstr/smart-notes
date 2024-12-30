@@ -31,7 +31,12 @@ export default function RootLayout() {
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <NoteProvider>
-        <Stack>
+        <Stack
+          screenOptions={{
+            animation: 'fade',
+            presentation: 'modal',
+            animationDuration: 3000,
+          }}>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen name="+not-found" />
         </Stack>
